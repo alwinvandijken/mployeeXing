@@ -1,5 +1,5 @@
 /*
- * Added to Github Repository
+ * Added to Github Repository new
  */
 public with sharing class AuthController {
 
