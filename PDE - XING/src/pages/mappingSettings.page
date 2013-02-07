@@ -1,0 +1,68 @@
+<apex:page id="mappingSettings" controller="mappingSettingsController" action="{!getSettingsFirstTime}" >
+    <apex:pageBlock >
+    	<apex:sectionHeader title="Mapping Settings" subtitle="Configuration & Settings"/>
+        <apex:Pagemessages />
+        
+        <apex:form id="generalform">
+            <apex:outputPanel id="FieldMappingsOutputPanel">
+                
+                <apex:PageBlockSection columns="1" title="Custom Field Mappings" collapsible="false">
+                    <apex:pageBlockTable var="mapping" value="{!objectMappingList}">
+                        <apex:column headerValue="Action">
+                            <a href="javascript:if (window.confirm('Are you sure?')) DeleteFieldMapping('{!mapping.Name}');">delete</a>
+                        </apex:column>
+                        <apex:column value="{!mapping.fromObject__c}"/>
+                        <apex:column value="{!mapping.fromObjectField__c}"/>
+                        <apex:column value="{!mapping.toObject__c}"/>
+                        <apex:column value="{!mapping.toObjectField__c}"/>
+                    </apex:pageBlockTable>
+                </apex:PageBlockSection>
+                
+                <apex:pageblocksection columns="2">                   
+                    
+                    <apex:PageBlockSectionItem rendered="{!addingFieldMapping}">
+                        <apex:outputLabel value="From Object" for="customObjectFromList" />
+                        <apex:selectList value="{!fromObject}" multiselect="false" size="1" id="customObjectFromList">
+                            <apex:selectOptions value="{!customObjectsFrom}" />
+                            <apex:actionSupport event="onchange" rerender="customObjectFromFieldsList" />
+                        </apex:selectList>
+                    </apex:PageBlockSectionItem>
+                    
+                    <apex:PageBlockSectionItem rendered="{!addingFieldMapping}">
+                        <apex:outputLabel value="To Object" for="customObjectToList" />
+                        <apex:selectList value="{!toObject}" multiselect="false" size="1" id="customObjectToList">
+                            <apex:selectOptions value="{!customObjectsTo}" />
+                            <apex:actionSupport event="onchange" rerender="customObjectToFieldsList" />
+                        </apex:selectList>
+                    </apex:PageBlockSectionItem>
+                    
+                    <apex:PageBlockSectionItem rendered="{!addingFieldMapping}">                        
+                        <apex:outputLabel value="Custom Object Fields (Copy From)" for="customObjectFieldList" />
+                        <apex:selectList value="{!fromObjectField}" multiselect="false" size="1" id="customObjectFromFieldsList">
+                            <apex:selectOptions value="{!customObjectFromFields}" />
+                        </apex:selectList>  
+                    </apex:PageBlockSectionItem>
+                    
+                    <apex:PageBlockSectionItem rendered="{!addingFieldMapping}">                        
+                        <apex:outputLabel value="Custom Object Fields (Copy To)" for="customObjectToFieldsList" />
+                        <apex:selectList value="{!toObjectField}" multiselect="false" size="1" id="customObjectToFieldsList">
+                            <apex:selectOptions value="{!customObjectToFields}" />
+                        </apex:selectList>  
+                    </apex:PageBlockSectionItem>
+                    
+                    <apex:outputPanel style="text-align: center; display: block; margin-left:auto; margin-right:auto;">
+                        <apex:commandButton value="Add Mapping" action="{!addFieldMapping}" rendered="{!NOT(addingFieldMapping)}"/>
+                        <apex:commandButton value="Save" action="{!saveFieldMapping}" rendered="{!addingFieldMapping}" />  
+                        <apex:commandButton value="Cancel" action="{!cancel}" rendered="{!addingFieldMapping}"/>                            
+                    </apex:outputPanel>
+                    
+                    <apex:actionFunction action="{!deleteFieldMapping}" name="DeleteFieldMapping" rerender="FieldMappingsOutputPanel">
+                        <apex:param name="fmname" value="" assignTo="{!fieldMappingName}"/>
+                    </apex:actionFunction>
+                    
+                </apex:pageblocksection>
+            </apex:outputPanel>
+        </apex:form>
+        
+    </apex:pageBlock>
+</apex:page>

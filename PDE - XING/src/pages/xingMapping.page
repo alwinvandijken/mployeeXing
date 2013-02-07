@@ -1,0 +1,16 @@
+<apex:page id="xingMapping" controller="xingMapping"> 
+    <apex:pageMessages />
+    <apex:form >
+        
+        <apex:selectList value="{!xingUserField}" multiselect="false" size="1" id="xingUserList">
+            <apex:selectOptions value="{!xingUserFields}" />
+        </apex:selectList>
+        
+        
+        <apex:selectList value="{!RDField}" multiselect="false" size="1" id="RDList">
+            <apex:selectOptions value="{!availableRDFields}" />
+        </apex:selectList>
+        <apex:commandButton value="Save" action="{!saveFieldMapping}"  />  
+    </apex:form>
+    
+</apex:page>

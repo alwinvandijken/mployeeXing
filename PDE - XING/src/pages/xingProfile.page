@@ -1,0 +1,213 @@
+<apex:page id="xingProfilePage" controller="xingProfileController" >
+    <apex:form >
+        <apex:pageBlock title="Xing Profile">
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!getPersonBasicProfile}" value="Person Basic Profile"/>
+                <apex:commandButton action="{!createPersonBasicProfile}" value="Create Basic Profile"/>
+                
+        	</apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" title="Full Profile">
+                <apex:outputLabel >id</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].id}"/>
+                <apex:outputLabel >first_name</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].first_name}"/>
+                <apex:outputLabel >last_name</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].last_name}"/>
+                <apex:outputLabel >display_name</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].display_name}"/>
+                <apex:outputLabel >page_name</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].page_name}"/>
+                <apex:outputLabel >permalink</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].permalink}"/>
+                <apex:outputLabel >gender</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].gender}"/>
+                <apex:outputLabel >birth_date</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].birth_date.day}"/>
+                <apex:outputLabel >active_email</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].active_email}"/>
+                <apex:outputLabel >time_zone</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].time_zone.name}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="Misc">
+                <apex:outputLabel >premium_services</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].premium_services}"/>
+                <apex:outputLabel >badges</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].badges}"/>
+                <apex:outputLabel >wants</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].wants}"/>
+                <apex:outputLabel >haves</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].haves}"/>
+                <apex:outputLabel >interests</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].interests}"/>
+                <apex:outputLabel >organisation_member</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].organisation_member}"/>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="Private Address">
+                <apex:outputLabel >street</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.street}"/>   
+                <apex:outputLabel >zip_code</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.zip_code}"/>                
+                <apex:outputLabel >city</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.city}"/>
+                <apex:outputLabel >province</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.province}"/>
+                <apex:outputLabel >country</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.country}"/>                
+                <apex:outputLabel >email</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.email}"/>
+                <apex:outputLabel >phone</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.phone}"/>
+                <apex:outputLabel >mobile_phone</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.mobile_phone}"/>
+                <apex:outputLabel >fax</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].private_address.fax}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="Business Address">
+                <apex:outputLabel >street</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.street}"/>   
+                <apex:outputLabel >zip_code</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.zip_code}"/>                
+                <apex:outputLabel >city</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.city}"/>
+                <apex:outputLabel >province</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.province}"/>
+                <apex:outputLabel >country</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.country}"/>                
+                <apex:outputLabel >email</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.email}"/>
+                <apex:outputLabel >phone</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.phone}"/>
+                <apex:outputLabel >mobile_phone</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.mobile_phone}"/>
+                <apex:outputLabel >fax</apex:outputLabel>
+                <apex:outputText value="{!fullProfile.users[0].business_address.fax}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="professional_experience">
+                <apex:repeat value="{!fullProfile.users[0].professional_experience}" var="pe">
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.name}"/> 
+                    <apex:outputLabel >title</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.title}"/> 
+                    <apex:outputLabel >company_size</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.company_size}"/>
+                    <apex:outputLabel >tag</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.tag}"/>
+                    <apex:outputLabel >url</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.url}"/>
+                    <apex:outputLabel >career_level</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.career_level}"/>
+                    <apex:outputLabel >begin_date</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.begin_date}"/>
+                    <apex:outputLabel >description</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.description}"/>
+                    <apex:outputLabel >end_date</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.end_date}"/>
+                    <apex:outputLabel >industry</apex:outputLabel>
+                    <apex:outputText value="{!pe.primary_company.industry}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="non_primary_companies">
+                <apex:repeat value="{!fullProfile.users[0].professional_experience.non_primary_companies}" var="npc">                        
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputText value="{!npc.name}"/> 
+                    <apex:outputLabel >title</apex:outputLabel>
+                    <apex:outputText value="{!npc.title}"/> 
+                    <apex:outputLabel >company_size</apex:outputLabel>
+                    <apex:outputText value="{!npc.company_size}"/>
+                    <apex:outputLabel >tag</apex:outputLabel>
+                    <apex:outputText value="{!npc.tag}"/>
+                    <apex:outputLabel >url</apex:outputLabel>
+                    <apex:outputText value="{!npc.url}"/>
+                    <apex:outputLabel >career_level</apex:outputLabel>
+                    <apex:outputText value="{!npc.career_level}"/>
+                    <apex:outputLabel >begin_date</apex:outputLabel>
+                    <apex:outputText value="{!npc.begin_date}"/>
+                    <apex:outputLabel >description</apex:outputLabel>
+                    <apex:outputText value="{!npc.description}"/>
+                    <apex:outputLabel >end_date</apex:outputLabel>
+                    <apex:outputText value="{!npc.end_date}"/>
+                    <apex:outputLabel >industry</apex:outputLabel>
+                    <apex:outputText value="{!npc.industry}"/>
+                </apex:repeat>  
+            </apex:pageBlockSection>
+            
+              <apex:pageBlockSection columns="2" title="Awards">
+                <apex:repeat value="{!fullProfile.users[0].professional_experience.awards}" var="award">
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputText value="{!award.name}"/>
+                    <apex:outputLabel >date_awarded</apex:outputLabel>
+                    <apex:outputText value="{!award.date_awarded}"/>
+                    <apex:outputLabel >url</apex:outputLabel>
+                    <apex:outputText value="{!award.url}"/> 
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" title="Qualifications">
+                <apex:repeat value="{!fullProfile.users[0].educational_background.qualifications}" var="qualification">
+                    <apex:outputText value="{!qualification.name}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+                
+            <apex:pageBlockSection columns="1" title="web profiles">
+                <apex:repeat value="{!fullProfile.users[0].web_profiles.values}" var="webProfile">                    
+                    <apex:outputText value="{!webProfile.name}"/>
+                    <apex:repeat value="{!webProfile.webURLs}" var="webURL">
+                         <apex:outputText value="{!webURL.url}"/>
+                    </apex:repeat>
+                </apex:repeat>
+            </apex:pageBlockSection> 
+            
+            <apex:pageBlockSection columns="2" title="im accounts">
+                <apex:repeat value="{!fullProfile.users[0].im_accounts.values}" var="imAccount">                    
+                    <apex:outputText value="{!imAccount.label}"/>
+                    <apex:outputText value="{!imAccount.name}"/>                    
+                </apex:repeat>
+            </apex:pageBlockSection> 
+            
+            <apex:pageBlockSection columns="2" title="Languages">
+                <apex:repeat value="{!fullProfile.users[0].languages.values}" var="l">
+                    <apex:outputText value="{!l.name}"/>
+                    <apex:outputText value="{!l.level}"/>
+                </apex:repeat>
+            </apex:pageBlockSection> 
+            
+            <apex:pageBlockSection columns="2" title="educational_background">
+                <apex:repeat value="{!fullProfile.users[0].educational_background.schools}" var="school">
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputText value="{!school.name}"/>
+                    <apex:outputLabel >degree</apex:outputLabel>
+                    <apex:outputText value="{!school.degree}"/>
+                    <apex:outputLabel >notes</apex:outputLabel>
+                    <apex:outputText value="{!school.notes}"/>
+                    <apex:outputLabel >subject</apex:outputLabel>
+                    <apex:outputText value="{!school.subject}"/>
+                    <apex:outputLabel >begin_date</apex:outputLabel>
+                    <apex:outputText value="{!school.begin_date}"/>
+                    <apex:outputLabel >end_date</apex:outputLabel>
+                    <apex:outputText value="{!school.end_date}"/>                    
+                </apex:repeat>                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="photo_urls">
+                <apex:image value="{!fullProfile.users[0].photo_urls.large}"/>
+                <apex:outputText value="{!fullProfile.users[0].photo_urls.large}"/> 
+                <apex:image value="{!fullProfile.users[0].photo_urls.mini_thumb}"/>
+                <apex:outputText value="{!fullProfile.users[0].photo_urls.mini_thumb}"/> 
+                <apex:image value="{!fullProfile.users[0].photo_urls.thumb}"/>
+                <apex:outputText value="{!fullProfile.users[0].photo_urls.thumb}"/> 
+                <apex:image value="{!fullProfile.users[0].photo_urls.medium_thumb}"/>
+                <apex:outputText value="{!fullProfile.users[0].photo_urls.medium_thumb}"/> 
+                <apex:image value="{!fullProfile.users[0].photo_urls.maxi_thumb}"/>
+                <apex:outputText value="{!fullProfile.users[0].photo_urls.maxi_thumb}"/> 
+            </apex:pageBlockSection>
+        
+    	{!fullProfile}
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

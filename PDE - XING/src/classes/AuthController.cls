@@ -1,3 +1,6 @@
+/*
+ * Added to Github Repository
+ */
 public with sharing class AuthController {
 
     public String service { get; set; }

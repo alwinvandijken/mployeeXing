@@ -1,0 +1,32 @@
+<!-- Visualforce Page -->
+<apex:page id="SearchPage" controller="SearchController" >
+    <style type="text/css">
+        .highlightWord { background-color: #ff2; }
+    </style>
+    
+	<apex:dataTable value="{!xingUserProfiles}" var="x" headerClass="headerRow" rowClasses="dataRow" styleClass="list testHighlight">        
+		<apex:column headerValue="xingUserProfile Name">
+			<apex:outputText value="{!x.Name}"/>
+		</apex:column>        
+        <apex:column headerValue="xingUserProfile Name">
+			<apex:outputText value="{!x.wants__c}"/>
+		</apex:column>
+	</apex:dataTable>
+    
+    
+    
+   
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+        j$.fn.highlight = function (str, className) {
+            var regex = new RegExp(str, "gi");
+            return this.each(function () {
+                this.innerHTML = this.innerHTML.replace(regex, function(matched) {
+                    return "<span class=\"" + className + "\">" + matched + "</span>";
+                });
+            });
+        };
+        j$(".testHighlight *").highlight("zoek", "highlightWord");
+    </script>
+</apex:page>
